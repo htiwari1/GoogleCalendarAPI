@@ -1,0 +1,43 @@
+<div class="container text-center">
+
+    <h1>Google Calendar Data</h1>
+    <div class="panel panel-primary">
+        <div class="panel-body">
+
+            <p>This applications sync to your Google Calendar and gives you useful information about your meeting
+                schedule. Click the button below to proceed.</p>
+            <button class="btn btn-primary" ng-click="handleAuthClick()">Authorize</button>
+            <button class="btn btn-primary" ng-click="logOut()">Logout</button>
+        </div>
+
+
+    </div>
+    <div class="row">
+    <div class="col-sm-5">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2>Upcoming Events</h2>
+            <div class="list-group">
+                <div ng-repeat="item in dataIn.items track by $index">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{item.summary}}</h4>
+                    <p class="list-group-item-text">{{item.start.dateTime}}</p>
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!--<hc-chart options="chartOptions">Placeholder for generic chart</hc-chart>-->
+<div class="col-sm-7">
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <hc-chart options="chartOptions">Placeholder for generic chart</hc-chart>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
