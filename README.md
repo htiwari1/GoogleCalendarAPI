@@ -1,2 +1,2 @@
-# TwitterAPI
-Web App to try out Twitter API
+# Google Calendar API
+Web App to try out Google Calendar API

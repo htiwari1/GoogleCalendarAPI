@@ -1,10 +1,10 @@
 'use strict';
 
-describe('myApp.calendarData module', function() {
+describe('myApp.src module', function() {
 
-  beforeEach(module('myApp.calendarData'));
+  beforeEach(module('myApp.src'));
 
-  describe('calendarData controller', function(){
+  describe('src controller', function(){
     it('should ....', inject(function($controller, $rootScope) {
       //spec body
       var retirementCtrl = $controller('RetirementCtrl' , {

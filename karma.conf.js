@@ -9,15 +9,15 @@ module.exports = function (config) {
             'bower_components/angular-route/angular-route.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'bower_components/highcharts/highcharts.js',
-            'calendarData/utils/google_client_api.js',
+            'src/utils/google_client_api.js',
             'app.js',
             'components/**/*.js',
-            'calendarData/services/googleCalendarService.js',
-            'calendarData/directives/highChartDirective.js',
-            'calendarData/utils/constants.js',
-            'calendarData/controllers/calendarDataController.js',
-            'calendarData/controllers/calendarDataControllerTest.js',
-            'calendarData/services/googleCalendarService_test.js'
+            'src/services/googleCalendarService.js',
+            'src/directives/highChartDirective.js',
+            'src/utils/constants.js',
+            'src/controllers/calendarDataController.js',
+            'src/controllers/calendarDataControllerTest.js',
+            'src/services/googleCalendarService_test.js'
         ],
 
         autoWatch: true,

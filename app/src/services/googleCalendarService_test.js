@@ -3,7 +3,7 @@
 describe('Google Service ', function() {
     var $googleService;
 
-    beforeEach(module('myApp.calendarData'));
+    beforeEach(module('myApp.src'));
     beforeEach(inject(function(_$googleService_) {
         //spec body
         $googleService = _$googleService_;

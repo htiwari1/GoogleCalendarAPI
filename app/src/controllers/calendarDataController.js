@@ -3,8 +3,8 @@
 angular.module('calendarApp')
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/calendarData', {
-            templateUrl: 'calendarData/templates/calendarData.html',
+        $routeProvider.when('/src', {
+            templateUrl: 'src/templates/src.html',
             controller: 'RetirementCtrl'
         });
     }])

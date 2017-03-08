@@ -26,14 +26,14 @@ describe('my app', function() {
   });
 
 
-  describe('calendarData', function() {
+  describe('src', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/calendarData');
+      browser.get('index.html#!/src');
     });
 
 
-    it('should render calendarData when user navigates to /calendarData', function() {
+    it('should render src when user navigates to /src', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         toMatch(/Coming Soon, keep your day job!/);
     });
