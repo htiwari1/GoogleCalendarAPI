@@ -9,6 +9,8 @@ Hosted on Heroku: https://googleclndr.herokuapp.com
 
 Found Issue: App fails sometimes in normal browser, incognito works. Will investigate it.
 
+Note: For the optimum experience, please choose a google account which has calendar events between March 6th and 13th.
+
 
 To run:
 ```
