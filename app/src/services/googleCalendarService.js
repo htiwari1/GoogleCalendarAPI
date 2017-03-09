@@ -1,7 +1,7 @@
 /**
  * Created by htiwari on 05/03/2017.
  */
-angular.module('calendarApp', ['ngRoute']).service('$googleService', ['constants', '$q', function (constants, $q) {
+angular.module('calendarApp', ['ngRoute', 'ngStorage']).service('$googleService', ['constants', '$q', function (constants, $q) {
 
     var clientId = constants.clientId;
     var scopes = constants.scopes;
@@ -18,8 +18,9 @@ angular.module('calendarApp', ['ngRoute']).service('$googleService', ['constants
         }
     }
 
-    this.authorizeGoogle = function () {
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, this.handleAuthResult);
+    this.authorizeGoogle = function (isLoggedIn) {
+        //the immediate parameter when true, prevents the annoying popup if user has already logged in
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: isLoggedIn}, this.handleAuthResult);
         return deferred.promise;
     }
 

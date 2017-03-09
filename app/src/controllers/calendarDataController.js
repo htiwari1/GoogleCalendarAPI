@@ -10,41 +10,12 @@ angular.module('calendarApp')
     }])
 
 
-    .controller('CalendarDataCtrl', ['$scope', '$googleService', function ($scope, $googleService) {
-        var startDate = moment('2017-03-06T04:26:52.000Z'); //using static dates for this app to get calendar events between
-        var endDate = moment('2017-03-13T04:26:52.000Z');
-        $scope.areChartsHidden = true;
-        $scope.isHeaderHidden = false;
-        var chartInput = [];
-        $scope.chartOptions = {
-            title: {
-                text: 'Meeting Data'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%e. %b',
-                    week: '%e. %b',
-                    month: '%b \'%y',
-                    year: '%Y'
-                },
-                tickInterval: 24 * 3600 * 1000
-            },
-            legend: {
-                enabled: false
-            },
+    .controller('CalendarDataCtrl', ['$scope', '$googleService', '$localStorage', function ($scope, $googleService, $localStorage) {
 
-            series: [{
-                name: 'Time spend in meetings',
-                data: chartInput,
-                type: 'areaspline',
-                pointStart: Date.UTC(2017, 2, 5), //the months go from 0-11, !@#$$#, dont ask me why
-                pointInterval: 24 * 3600 * 1000
-            }]
-        };
+
+        var __ret = init();
+        var startDate = __ret.startDate;
+        var endDate = __ret.endDate;
 
         // $scope.dataIn;
         var fillChart = function (data) {
@@ -85,22 +56,75 @@ angular.module('calendarApp')
         };
 
         $scope.handleAuthClick = function () {
-            $googleService.authorizeGoogle().then(function (data) {
-                getCalendarEvents(data)
-            }, function (err) {
-                alert('Failed: ' + err);
-            });
+                $googleService.authorizeGoogle($localStorage.isLoggedIn).then(function () {
+                    $localStorage.isLoggedIn = true;
+                    getCalendarEvents()
+                }, function (err) {
+                    alert('Failed: ' + err);
+                });
             return false;
-        }
-
-        $scope.logOut = function () {
-            gapi.auth.setToken(null);
-            gapi.auth.signOut();
         }
 
 
         $scope.formatDate = function (inputDateString) {
             return moment(inputDateString).format("dddd, MMMM Do YYYY, h:mm:ss a");
+        }
+
+
+        function init() {
+            var startDate = moment('2017-03-06T04:26:52.000Z'); //using static dates for this app to get calendar events between
+            var endDate = moment('2017-03-13T04:26:52.000Z');
+
+            //handling refresh behaviour to aviod having to login again
+            if ($localStorage.isLoggedIn == null){
+                $localStorage.isLoggedIn = false;
+            }
+
+            else {
+                $localStorage.isLoggedIn = true;
+            }
+            $scope.areChartsHidden = true;
+            $scope.isHeaderHidden = false;
+            var chartInput = [];
+            $scope.chartOptions = {
+                title: {
+                    text: 'Meeting Data'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: {
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                        day: '%e. %b',
+                        week: '%e. %b',
+                        month: '%b \'%y',
+                        year: '%Y'
+                    },
+                    tickInterval: 24 * 3600 * 1000
+                },
+                yAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Time spent in meetings',
+                        style: {
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+
+                series: [{
+                    name: 'Time spend in meetings',
+                    data: chartInput,
+                    type: 'areaspline',
+                    pointStart: Date.UTC(2017, 2, 5), //the months go from 0-11, !@#$$#, dont ask me why
+                    pointInterval: 24 * 3600 * 1000
+                }]
+            };
+            return {startDate: startDate, endDate: endDate};
         }
 
     }]);

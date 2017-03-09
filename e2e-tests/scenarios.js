@@ -5,22 +5,22 @@
 describe('my app', function() {
 
 
-  it('should automatically redirect to /mortgage when location hash/fragment is empty', function() {
+  it('should automatically redirect to /calendarData when location hash/fragment is empty', function() {
     browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/mortgage");
+    expect(browser.getLocationAbsUrl()).toMatch("/calendarData");
   });
 
 
-  describe('mortgage', function() {
+  describe('calendarData', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/mortgage');
+      browser.get('index.html#!/calendarData');
     });
 
 
-    it('should render mortgage when user navigates to /mortgage', function() {
-      expect(element.all(by.css('[ng-view] label')).first().getText()).
-        toMatch(/Loan Amount/);
+    it('should render calendarData when user navigates to /calendarData', function() {
+      expect(element.all(by.css('[ng-view] h1')).first().getText()).
+        toMatch(/Google Calendar Data/);
     });
 
   });
