@@ -23,3 +23,8 @@
   /*content: "|";*/
   /*padding-right: 0.3em;*/
 /*}*/
+
+#eventList{
+    max-height: 300px;
+    overflow: scroll
+}

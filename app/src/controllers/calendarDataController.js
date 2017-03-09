@@ -18,7 +18,8 @@ angular.module('calendarApp')
         var endDate = __ret.endDate;
 
         // $scope.dataIn;
-        var fillChart = function (data) {
+        $scope.fillChart = function (data) {
+            // console.log(JSON.stringify(data));
             var daterange = {};
             var chartInput = [];
 
@@ -41,15 +42,17 @@ angular.module('calendarApp')
                  chartInput.push(daterange[key]); //arrange the times in format needed for highcharts
             }
 
-            $scope.chartOptions.series[0].data = chartInput; //update highchart view
 
+            $scope.chartOptions.series[0].data = chartInput; //update highchart view
             $scope.areChartsHidden = false;
             $scope.isHeaderHidden = true;
+
+            return JSON.stringify(chartInput); //this is just for unit test
         };
 
         var getCalendarEvents = function () {
             $googleService.makeApiCall().then(function (data) {
-                fillChart(data)
+                $scope.fillChart(data)
             }, function (err) {
                 alert('Failed: ' + err);
             });
@@ -58,7 +61,7 @@ angular.module('calendarApp')
         $scope.handleAuthClick = function () {
                 $googleService.authorizeGoogle($localStorage.isLoggedIn).then(function () {
                     $localStorage.isLoggedIn = true;
-                    getCalendarEvents()
+                    getCalendarEvents();
                 }, function (err) {
                     alert('Failed: ' + err);
                 });
@@ -73,7 +76,7 @@ angular.module('calendarApp')
 
         function init() {
             var startDate = moment('2017-03-06T04:26:52.000Z'); //using static dates for this app to get calendar events between
-            var endDate = moment('2017-03-13T04:26:52.000Z');
+            var endDate = moment('2017-03-09T04:26:52.000Z');
 
             //handling refresh behaviour to aviod having to login again
             if ($localStorage.isLoggedIn == null){

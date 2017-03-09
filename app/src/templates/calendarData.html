@@ -20,7 +20,7 @@
             <h3 class="panel-title">
                 Upcoming Events</h3>
         </div>
-            <div class="list-group" style="max-height: 300px; overflow: scroll">
+            <div class="list-group" id="eventList">
                 <div ng-repeat="item in dataIn.items track by $index">
                 <a href="#" class="list-group-item">
                     <p class="list-group-item-heading">{{item.summary}}</p>
