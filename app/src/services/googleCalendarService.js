@@ -29,7 +29,8 @@ angular.module('calendarApp', ['ngRoute']).service('$googleService', ['constants
                 'calendarId': 'primary',
                 'timeMin': '2017-03-06T04:26:52.000Z',
                 'timeMax': '2017-03-13T04:26:52.000Z',
-                'singleEvents': 'true'
+                'singleEvents': 'true',
+                'orderBy': 'startTime'
             });
             request1.execute(function (resp) {
                 deferred2.resolve(resp);
