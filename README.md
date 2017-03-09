@@ -7,6 +7,8 @@ in these meetings. For simplicity, I have hardcoded the dates (March 6th to Marc
 
 Hosted on Heroku: https://googleclndr.herokuapp.com
 
+Found Issue: App fails sometimes in normal browser, incognito works. Will investigate it.
+
 
 To run:
 ```
