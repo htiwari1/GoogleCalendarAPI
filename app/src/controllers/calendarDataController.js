@@ -76,7 +76,7 @@ angular.module('calendarApp')
 
         function init() {
             var startDate = moment('2017-03-06T04:26:52.000Z'); //using static dates for this app to get calendar events between
-            var endDate = moment('2017-03-09T04:26:52.000Z');
+            var endDate = moment('2017-03-13T04:26:52.000Z');
 
             //handling refresh behaviour to aviod having to login again
             if ($localStorage.isLoggedIn == null){
