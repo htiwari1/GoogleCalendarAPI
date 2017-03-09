@@ -11,8 +11,24 @@ angular.module('calendarApp')
             scope: {
                 options: '='
             },
+            replace: true,
             link: function (scope, element) {
-                Highcharts.chart(element[0], scope.options);
+
+                scope.$watch("options", function (newValue) {
+                    // console.log("was here");
+                    Highcharts.chart(element[0], newValue);
+                    // chart.series[0].setData(newValue, true);
+                }, true);
+
             }
+
+            // link: function (scope, element, attrs) {
+            //     console.log(3);
+            //     var chart = new Highcharts.Chart(options);
+            //     scope.$watch("items", function (newValue) {
+            //         chart.series[0].setData(newValue, true);
+            //     }, true);
+            //
+            // }
         };
     })

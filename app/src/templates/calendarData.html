@@ -14,23 +14,23 @@
     </div>
     <div class="row">
     <div class="col-sm-5">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h2>Upcoming Events</h2>
-            <div class="list-group">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Upcoming Events</h3>
+        </div>
+            <div class="list-group" style="max-height: 300px; overflow: scroll">
                 <div ng-repeat="item in dataIn.items track by $index">
                 <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">{{item.summary}}</h4>
-                    <p class="list-group-item-text">{{item.start.dateTime}}</p>
+                    <p class="list-group-item-heading">{{item.summary}}</p>
+                    <p class="list-group-item-text">{{(formatDate(item.start.dateTime))}}</p>
                 </a>
                 </div>
             </div>
-        </div>
     </div>
 
     </div>
 
-    <!--<hc-chart options="chartOptions">Placeholder for generic chart</hc-chart>-->
 <div class="col-sm-7">
     <div class="panel panel-default">
 

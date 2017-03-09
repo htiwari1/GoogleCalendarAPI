@@ -3,15 +3,18 @@
 angular.module('calendarApp')
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/src', {
-            templateUrl: 'src/templates/src.html',
-            controller: 'RetirementCtrl'
+        $routeProvider.when('/calendarData', {
+            templateUrl: 'src/templates/calendarData.html',
+            controller: 'CalendarDataCtrl'
         });
     }])
 
 
-    .controller('RetirementCtrl', ['$scope', '$googleService', function ($scope, $googleService) {
+    .controller('CalendarDataCtrl', ['$scope', '$googleService', function ($scope, $googleService) {
 
+
+        var durations = [];
+        // var seriesData = {data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]};
         $scope.chartOptions = {
             title: {
                 text: 'Temperature data'
@@ -22,7 +25,7 @@ angular.module('calendarApp')
             },
 
             series: [{
-                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                data: durations
             }]
         };
 
@@ -35,8 +38,10 @@ angular.module('calendarApp')
                 var end = moment(data.items[value].end.dateTime);
                 // summaries.push() = data.items[value].summary;
                 console.log(start.toDate());
-                console.log(end-start);
+                durations.push((end-start)/60000);
+
             });
+            // $scope.chartOptions.series[0].data = durations;
         };
 
         var getCalendarEvents = function () {
@@ -59,6 +64,11 @@ angular.module('calendarApp')
         $scope.logOut = function () {
             gapi.auth.setToken(null);
             gapi.auth.signOut();
+        }
+
+
+        $scope.formatDate = function (inputDateString) {
+            return moment(inputDateString).format("dddd, MMMM Do YYYY, h:mm:ss a");
         }
 
     }]);

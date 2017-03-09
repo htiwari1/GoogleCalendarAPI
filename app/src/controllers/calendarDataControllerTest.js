@@ -7,7 +7,7 @@ describe('myApp.src module', function() {
   describe('src controller', function(){
     it('should ....', inject(function($controller, $rootScope) {
       //spec body
-      var retirementCtrl = $controller('RetirementCtrl' , {
+      var retirementCtrl = $controller('CalendarDataCtrl' , {
           $scope: $rootScope
       });
       // expect(retirementCtrl).toBeDefined();
