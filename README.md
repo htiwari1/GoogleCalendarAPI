@@ -5,6 +5,8 @@ Web App to try out Google Calendar API
 Simple web app which shows a user a list of meetings on their Google Calendar and the time in minutes spent on those days 
 in these meetings. For simplicity, I have hardcoded the dates (March 6th to March 13th 2017) and not implemented a logout feature. 
 
+Hosted on Heroku: https://googleclndr.herokuapp.com
+
 
 To run:
 ```
